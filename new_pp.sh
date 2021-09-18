@@ -53,3 +53,10 @@ TEST_DIR = ${directory[3]}
 " > $project/makefile
 
 cat makefile >> $project/makefile
+
+# set up git repo
+cat gitignore >> $project/.gitignore
+cd $project
+git init -b main
+git add --all
+git commit -m "First Commit"
