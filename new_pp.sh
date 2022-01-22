@@ -27,12 +27,14 @@ int main() {
 cp catch.hpp $project/lib
 
 echo -e "#define CATCH_CONFIG_MAIN
+#define CATCH_CONFIG_ENABLE_BENCHMARKING
 #include \"catch.hpp\"
 
 // Put tests in different files to minimize recompiling catch
 " > $project/tests/test_main.cpp
 
-echo -e "#include \"catch.hpp\"
+echo -e "#define CATCH_CONFIG_ENABLE_BENCHMARKING
+#include \"catch.hpp\"
 
 TEST_CASE(\"Example\") {
 	REQUIRE(1 == 1);
@@ -53,6 +55,8 @@ TEST_DIR = ${directory[3]}
 " > $project/makefile
 
 cat makefile >> $project/makefile
+
+cp compile_flags.txt $project/compile_flags.txt
 
 # set up git repo
 cat gitignore >> $project/.gitignore
